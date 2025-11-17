@@ -1,0 +1,25 @@
+.fondo {
+    background: linear-gradient(135deg, #950606 0%, #7a0909 50%, #5a0707 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(149, 6, 6, 0.4);
+    padding: 25px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.fondo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../assets/logo.png");
+    background-size: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    background-blend-mode: overlay;
+    pointer-events: none;
+}

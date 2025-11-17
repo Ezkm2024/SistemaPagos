@@ -1,0 +1,112 @@
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center fondo rounded p-3 mb-5">
+      <app-header></app-header>
+      <div class="col-12 text-white formulario rounded-3 text-center">
+        <p class="fs-2 mb-4">Historial de Ventas</p>
+        
+        <!-- Estadísticas -->
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <div class="stats-card">
+              <h5>Total de Ventas</h5>
+              <div class="stat-value">{{ totalVentas }}</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stats-card">
+              <h5>Total Recaudado</h5>
+              <div class="stat-value">${{ totalImporte | number:'1.2-2' }}</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stats-card">
+              <h5>Promedio por Venta</h5>
+              <div class="stat-value">${{ promedioVenta | number:'1.2-2' }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Búsqueda -->
+        <div class="row mb-3">
+          <div class="col-12">
+            <input 
+              type="text" 
+              class="search-box" 
+              placeholder="🔍 Buscar por nombre, apellido, empresa o importe..."
+              [(ngModel)]="busquedaTexto"
+              (input)="aplicarBusqueda()">
+          </div>
+        </div>
+        
+        <!-- Filtros -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <form [formGroup]="filtroForm" class="row g-3 justify-content-center">
+              <div class="col-md-3">
+                <label class="form-label">Empresa</label>
+                <select class="form-select" formControlName="empresa">
+                  <option value="">Todas las empresas</option>
+                  <option *ngFor="let emp of empresas" [value]="emp.idEmpresa">{{ emp.nombre }}</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Fecha Inicio</label>
+                <input type="date" class="form-control" formControlName="fechaInicio">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Fecha Fin</label>
+                <input type="date" class="form-control" formControlName="fechaFin">
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <div class="w-100">
+                  <button type="button" class="btn btn-primary w-100 mb-2" (click)="aplicarFiltros()">Filtrar</button>
+                  <button type="button" class="btn btn-secondary w-100" (click)="limpiarFiltros()">Limpiar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Botón descargar Excel -->
+        <div class="mb-3">
+          <button class="btn btn-success" (click)="descargarExcel()">
+            📊 Descargar Excel
+          </button>
+        </div>
+
+        <!-- Tabla de ventas -->
+        <div class="table-responsive">
+          <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID Pago</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Importe</th>
+                <th scope="col">Método</th>
+                <th scope="col">Fecha de Pago</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of ventasFiltradas">
+                <th scope="row">{{ cliente.idPago }}</th>
+                <td>{{ cliente.nombreCliente }}</td>
+                <td>{{ cliente.apellidoCliente }}</td>
+                <td>{{ obtenerNombreEmpresa(cliente.idEmpresa) }}</td>
+                <td>{{ cliente.importe | currency }}</td>
+                <td>{{ cliente.metodoDePago | titlecase }}</td>
+                <td>{{ cliente.fechaDePago | date: 'dd/MM/yyyy' }}</td>
+              </tr>
+              <tr *ngIf="ventasFiltradas.length === 0">
+                <td colspan="7" class="text-center">No hay ventas registradas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-danger mt-3" (click)="volver()">Volver al Inicio</button>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+  

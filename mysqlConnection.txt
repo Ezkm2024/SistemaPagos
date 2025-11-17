@@ -1,0 +1,3 @@
+Datos de Conexión a mySQL
+
+string connString = "Server=mysql5045.site4now.net;Database=db_a44a50_banco;Uid=a44a50_banco;Pwd=Password1!;";

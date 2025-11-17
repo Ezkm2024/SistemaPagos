@@ -1,0 +1,96 @@
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center fondo rounded p-3 mb-5">
+        <app-header></app-header>
+        <div class="col-12 text-white formulario rounded-3 text-center">
+            <p class="fs-2 mb-4">Gestión de Empresas</p>
+
+            <!-- Botón para crear nueva empresa -->
+            <div class="mb-4" *ngIf="!mostrarFormulario">
+                <button class="btn btn-success" (click)="mostrarFormCrear()">
+                    + Nueva Empresa
+                </button>
+            </div>
+
+            <!-- Formulario de creación/edición -->
+            <div class="mb-4" *ngIf="mostrarFormulario">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form [formGroup]="empresaForm" (ngSubmit)="guardarEmpresa()">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre de la Empresa</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    formControlName="nombre"
+                                    placeholder="Ingrese el nombre de la empresa">
+                                <div *ngIf="empresaForm.get('nombre')?.invalid && empresaForm.get('nombre')?.touched" 
+                                     class="text-danger mt-1">
+                                    <small *ngIf="empresaForm.get('nombre')?.hasError('required')">
+                                        El nombre es requerido
+                                    </small>
+                                    <small *ngIf="empresaForm.get('nombre')?.hasError('minlength')">
+                                        El nombre debe tener al menos 3 caracteres
+                                    </small>
+                                    <small *ngIf="empresaForm.get('nombre')?.hasError('maxlength')">
+                                        El nombre no puede exceder 50 caracteres
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <button 
+                                    type="submit" 
+                                    class="btn btn-primary"
+                                    [disabled]="empresaForm.invalid">
+                                    {{ empresaEditando ? 'Actualizar' : 'Crear' }}
+                                </button>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-secondary"
+                                    (click)="cancelarEdicion()">
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de empresas -->
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let empresa of empresas">
+                            <th scope="row">{{ empresa.idEmpresa }}</th>
+                            <td>{{ empresa.nombre }}</td>
+                            <td>
+                                <button 
+                                    class="btn btn-sm btn-warning me-2"
+                                    (click)="mostrarFormEditar(empresa)">
+                                    Editar
+                                </button>
+                                <button 
+                                    class="btn btn-sm btn-danger"
+                                    (click)="eliminarEmpresa(empresa.idEmpresa)">
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="empresas.length === 0">
+                            <td colspan="3" class="text-center">No hay empresas registradas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn btn-danger mt-3" (click)="volver()">Volver al Inicio</button>
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>

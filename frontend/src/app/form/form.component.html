@@ -1,0 +1,63 @@
+<div class="container mt-3 mb-5">
+    <div class="row align-items-center fondo rounded p-3 mb-5">
+        <app-header></app-header>
+        <div class="col-sm-12 col-md-6 text-white formulario rounded-4">
+            <p class="fs-2 text-center">Ingrese sus datos:</p>
+
+            <form [formGroup]="form" (ngSubmit)="send()">
+                <div class="mb-3 input-group justify-content-between text-center">
+                    <div class="col-5">
+                        <label for="nombreYApellido" class="form-label fw-medium">Nombre</label>
+                        <input type="text" class="form-control fw-medium" formControlName="nombre" placeholder="Escribe tu nombre" maxlength="20" pattern="[A-Za-z]+">
+                        <!-- validador de nombre -->
+                        <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
+                            <span *ngIf="nombre.hasError('required')">El nombre es <strong>Requerido</strong></span>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <label for="nombreYApellido" class="form-label fw-medium">Apellido</label>
+                        <input type="text" class="form-control fw-medium" formControlName="apellido" placeholder="Escribe tu apellido" maxlength="20" pattern="[A-Za-z]+">
+                        <!-- validador de apellido -->
+                        <div *ngIf="form.get('apellido')?.invalid && form.get('apellido')?.touched">
+                            <span *ngIf="apellido.hasError('required')">El apellido es <strong>Requerido</strong></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="mb-3 text-center">
+                    <label for="empresaAPagar" class="form-label fw-medium">Empresa a pagar</label>
+                    <select class="form-select fw-medium" id="empresaAPagar" formControlName="empresa">
+                        <option value="" disabled>Seleccione una empresa</option>
+                        <option *ngFor="let item of empresas; let i = index" [value]="item.idEmpresa">{{item.nombre}}</option>
+                    </select>
+                </div>
+    
+                <div class="mb-3 text-center">
+                    <label for="importe" class="form-label fw-medium">Importe</label>
+                    <input type="number" formControlName="importe" class="form-control fw-medium" placeholder="Importe" min="0">
+                </div>
+    
+                <div class="row">
+                    <label class="form-label text-center fw-medium">Forma de pago</label>
+                    <div class="col text-center">
+                        <input type="radio" id="tarjeta" name="pago" value="tarjeta" formControlName="pago" class="form-check-input m-1 mt-3">
+                        <label for="tarjeta" class="btn btn-outline-light pago ms-1 fw-semibold">Tarjeta
+                            <img src="../assets/credit-card.png" class="ms-1" alt="tarjeta" width="35px">
+                        </label>
+                    </div>
+                </div>
+    
+                <div class="row mt-4">
+                    <div class="col  text-center">
+                        <button type="submit" [disabled]="form.invalid" class="btn btn-success fw-medium">Confirmar pago</button>
+                    </div>
+                </div>
+            </form>
+            <app-footer></app-footer>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 text-center">
+            <img src="../assets/online-payment-icon.png" class="img img-fluid" alt="">
+        </div>
+    </div>
+</div>

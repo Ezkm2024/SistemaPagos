@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+Server-Node-Express-/node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files (mantener estructura pero no datos sensibles)
+Server-Node-Express-/data/*.json
+Server-Node-Express-/downloads/*.xlsx
+
+# Angular
+frontend/.angular/
+frontend/.sass-cache/
+
+# Testing
+coverage/
+.nyc_output/
+
