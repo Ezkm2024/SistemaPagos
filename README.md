@@ -2,13 +2,17 @@
 
 Sistema completo de gestión de pagos online con registro de ventas y exportación a Excel.
 
+Desarrollado para la **Prof. Paula Robles** del Profesorado Francisco de Paula Robles, ubicado en la ciudad de **Dolores, Buenos Aires**.
+
 ## Características
 
 - ✅ Registro de pagos online
 - ✅ Visualización de ventas con filtros por empresa y fecha
+- ✅ Búsqueda en tiempo real de ventas
+- ✅ Dashboard con estadísticas (total ventas, recaudado, promedio)
 - ✅ Gestión completa de empresas (Crear, Editar, Eliminar)
 - ✅ Exportación de ventas a Excel
-- ✅ Interfaz moderna y responsive
+- ✅ Interfaz moderna y responsive con diseño personalizado
 
 ## Estructura del Proyecto
 
@@ -85,10 +89,15 @@ La aplicación se ejecutará en `http://localhost:4200`
 ### Ver Ventas
 
 1. Navega a la sección "Ventas"
-2. Usa los filtros para buscar por:
+2. Visualiza las estadísticas en tiempo real:
+   - Total de ventas
+   - Total recaudado
+   - Promedio por venta
+3. Usa la búsqueda para encontrar ventas específicas
+4. Usa los filtros para buscar por:
    - Empresa
    - Rango de fechas
-3. Haz clic en "Descargar Excel" para exportar los resultados
+5. Haz clic en "Descargar Excel" para exportar los resultados
 
 ### Gestionar Empresas
 
@@ -116,5 +125,4 @@ La aplicación se ejecutará en `http://localhost:4200`
 - Los datos se almacenan en archivos JSON en el servidor
 - Los archivos Excel se generan dinámicamente y se descargan automáticamente
 - El sistema está preparado para ser desplegado en producción
-
-
+- Diseño personalizado con paleta de colores rojos profesional
