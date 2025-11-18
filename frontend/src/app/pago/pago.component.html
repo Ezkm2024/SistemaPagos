@@ -4,7 +4,20 @@
         <div class="col-sm-12 col-md-6 text-white formulario rounded-3 text-center">
             <p class="fs-2">¡Pago realizado con éxito!</p>
             <p>Esta plataforma de pagos fue desarrollada para la Prof. Paula Robles del Profesorado Francisco de Paula Robles, ubicado en la ciudad de Dolores, Buenos Aires.</p>
-            <button class="btn btn-danger" (click)="volver()">Volver al Inicio</button>
+            
+            <!-- Botón de descarga de Excel -->
+            <div *ngIf="excelFilename" class="mb-3">
+                <p class="mb-2">📄 Se ha generado un archivo Excel con los datos del pago:</p>
+                <button class="btn btn-success btn-lg" (click)="descargarExcel()">
+                    📊 Descargar Excel del Pago
+                </button>
+                <p class="mt-2 small text-muted">{{ excelFilename }}</p>
+            </div>
+            
+            <div class="mt-4 d-flex gap-2 justify-content-center flex-wrap">
+                <button class="btn btn-primary" (click)="verPagos()">📊 Ver Todos los Pagos</button>
+                <button class="btn btn-danger" (click)="volver()">🏠 Volver al Inicio</button>
+            </div>
             <app-footer></app-footer>
         </div>
         

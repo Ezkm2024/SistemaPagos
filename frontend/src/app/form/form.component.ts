@@ -4,7 +4,6 @@ import { Cliente } from '../interfaces/cliente';
 import { PagosService } from '../services/PagosServices.service';
 import { Empresa } from '../interfaces/empresa';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -72,13 +71,23 @@ export class FormComponent implements OnInit {
       fechaDePago: this.fechaHoy,
     }
 
-    console.log(cliente)
-
-    this._pagosService.addPago(cliente).subscribe(() => {
+    this._pagosService.addPago(cliente).subscribe((response: any) => {
       console.log('Pago registrado exitosamente');
-    })
-
-    this.router.navigate(['pagos']);
+      // Guardar información del Excel en el estado de navegación
+      if (response.excel) {
+        this.router.navigate(['pagos'], { 
+          state: { 
+            excelFilename: response.excel.filename,
+            downloadUrl: response.excel.downloadUrl 
+          } 
+        });
+      } else {
+        this.router.navigate(['pagos']);
+      }
+    }, error => {
+      console.error('Error al registrar pago:', error);
+      this.router.navigate(['pagos']);
+    });
 
   }
 

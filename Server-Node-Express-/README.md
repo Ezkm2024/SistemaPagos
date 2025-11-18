@@ -40,9 +40,11 @@ El servidor se ejecutará en `http://localhost:3000`
 
 ## Estructura de Datos
 
-Los datos se almacenan en archivos JSON en la carpeta `data/`:
-- `pagos.json` - Registro de todos los pagos
-- `empresas.json` - Lista de empresas
+Los datos se almacenan en **SQL Server** en la base de datos `SistemaPagos`:
+- Tabla `Pagos` - Registro de todos los pagos
+- Tabla `Empresas` - Lista de empresas
+
+**Importante:** Antes de iniciar el servidor, ejecuta el script `database.sql` en SQL Server Management Studio para crear la base de datos y las tablas.
 
 Los archivos Excel generados se guardan temporalmente en la carpeta `downloads/`.
 
