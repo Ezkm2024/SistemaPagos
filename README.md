@@ -4,6 +4,17 @@ Sistema completo de gestión de pagos online con registro de ventas y exportaci�
 
 Desarrollado para la **Prof. Paula Robles** del Profesorado Francisco de Paula Robles, ubicado en la ciudad de **Dolores, Buenos Aires**.
 
+## 📸 Capturas de Pantalla
+
+### Página Principal - Formulario de Pago
+![Formulario de Pago](docs/images/1.png)
+
+### Sección de Ventas
+![Ventas](docs/images/ventas.png)
+
+### Gestión de Empresas
+![Empresas](docs/images/empresas.png)
+
 ## 🚀 Características
 
 - ✅ Registro de pagos online con guardado automático en SQL Server
@@ -163,6 +174,8 @@ http://localhost:4200
 
 ### Registrar un Pago
 
+![Formulario de Pago](docs/images/1.png)
+
 1. En la página principal (Inicio), completa el formulario:
    - **Nombre** del cliente
    - **Apellido** del cliente
@@ -178,6 +191,8 @@ http://localhost:4200
    - Aparece la página de confirmación con botón para descargar el Excel
 
 ### Ver Todos los Pagos Realizados
+
+![Sección de Ventas](docs/images/ventas.png)
 
 **Tres formas de acceder:**
 
@@ -208,6 +223,8 @@ http://localhost:4200
   - Formato Excel listo para imprimir o compartir
 
 ### Gestionar Empresas
+
+![Gestión de Empresas](docs/images/empresas.png)
 
 1. Navega a la sección **"🏢 Empresas"** (menú superior)
 
